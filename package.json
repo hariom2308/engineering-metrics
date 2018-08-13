@@ -1,0 +1,22 @@
+{
+  "name": "automategithubmetrics",
+  "version": "1.0.0",
+  "description": "Automate the open pull requests and integrate into google spreadsheets to visualize the data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hariom2308/AutomateGitHubMetrics.git"
+  },
+  "author": "Hari Om & Rufael Negash",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hariom2308/AutomateGitHubMetrics/issues"
+  },
+  "homepage": "https://github.com/hariom2308/AutomateGitHubMetrics#readme",
+  "dependencies": {
+    "github-api": "^3.0.0"
+  }
+}
