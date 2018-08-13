@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/hariom2308/AutomateGitHubMetrics#readme",
   "dependencies": {
-    "github-api": "^3.0.0"
+    "github-api": "^3.0.0",
+    "github-js": "^0.1.4"
   }
 }
