@@ -20,7 +20,7 @@ babbel
             console.log(
               `${repoName}: ${numberOfOpenPullRequests} ${delimiter}\n\n`
             );
-            //console.log(res.data);
+            console.log(res.data);
           }
         })
         .catch(err => console.log(err));
