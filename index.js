@@ -15,10 +15,12 @@ babbel
       repo
         .listPullRequests({})
         .then(res => {
-          if (res.data.length != 0) {
-            console.log(repoName, "**************************");
-            console.log(res.data.length);
-            console.log("\n\n");
+          const numberOfOpenPullRequests = res.data.length;
+
+          if (numberOfOpenPullRequests != 0) {
+            console.log(
+              `${repoName}: ${numberOfOpenPullRequests} **************************\n\n\n`
+            );
             console.log(res.data);
           }
         })
