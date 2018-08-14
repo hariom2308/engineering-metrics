@@ -1,7 +1,6 @@
 require("dotenv").config();
 const GitHub = require("github-api");
 const accessToken = process.env.ACCESS_TOKEN;
-// basic auth
 const gh = new GitHub({ token: accessToken });
 const babbel = gh.getOrganization("lessonnine");
 
@@ -21,7 +20,7 @@ babbel
             console.log(
               `${repoName}: ${numberOfOpenPullRequests} **************************\n\n\n`
             );
-            console.log(res.data);
+            //console.log(res.data);
           }
         })
         .catch(err => console.log(err));
@@ -30,10 +29,3 @@ babbel
   .catch(err => {
     console.log(err);
   });
-
-/*
-   listPullRequests(options, cb) {
-      options = options || {};
-      return this._request('GET', `/repos/${this.__fullname}/pulls`, options, cb);
-   }
-*/
