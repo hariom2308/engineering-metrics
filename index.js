@@ -1,19 +1,33 @@
-require('dotenv').config()
-var GitHub = require('github-api');
+require("dotenv").config();
+const GitHub = require("github-api");
 const accessToken = process.env.ACCESS_TOKEN;
 // basic auth
-var gh = new GitHub({token: accessToken});
-const Babbel = gh.getOrganization('lessonnine');
+const gh = new GitHub({ token: accessToken });
+const babbel = gh.getOrganization("lessonnine");
 
-Babbel.getRepos( (err, repos) => {
-  let num = Math.floor(Math.random() * repos.length);
-  let repoName = repos[num].full_name;
-  console.log(`Babbel has ${repos.length} repos!`);
-  console.log('========================================');
-  console.log(`${repoName}: Repository of Babbel organization\n\n`, repos[num]);
-}).catch(err => {
-  console.log(err);
-});
+babbel
+  .getRepos()
+  .then(repos => {
+    const repoArray = repos.data;
+    for (let i = 0; i < repoArray.length; i++) {
+      const repoName = repoArray[i].name;
+      let repo = gh.getRepo("lessonnine", repoName);
+      repo
+        .listPullRequests({})
+        .then(res => {
+          if (res.data.length != 0) {
+            console.log(repoName, "**************************");
+            console.log(res.data.length);
+            console.log("\n\n");
+            console.log(res.data);
+          }
+        })
+        .catch(err => console.log(err));
+    }
+  })
+  .catch(err => {
+    console.log(err);
+  });
 
 /*
    listPullRequests(options, cb) {
