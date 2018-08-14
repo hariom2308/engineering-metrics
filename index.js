@@ -15,12 +15,12 @@ babbel
         .listPullRequests({})
         .then(res => {
           const numberOfOpenPullRequests = res.data.length;
-
+          const delimiter = "*".repeat(numberOfOpenPullRequests);
           if (numberOfOpenPullRequests != 0) {
             console.log(
-              `${repoName}: ${numberOfOpenPullRequests} **************************\n\n\n`
+              `${repoName}: ${numberOfOpenPullRequests} ${delimiter}\n\n`
             );
-            console.log(res.data);
+            //console.log(res.data);
           }
         })
         .catch(err => console.log(err));
