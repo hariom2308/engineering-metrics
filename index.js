@@ -15,28 +15,20 @@ babbel
         .listPullRequests({})
         .then(res => {
           const numberOfOpenPullRequests = res.data.length;
-          const delimiter = "*".repeat(numberOfOpenPullRequests);
           if (numberOfOpenPullRequests != 0) {
-            for (let j = 0; j < res.data.length; j++) {
+            for (let j = 0; j < numberOfOpenPullRequests; j++) {
+              const pullReq = res.data[j];
               const pullRequestData = [
                 res.headers.date,
                 repoName,
-                res.data[j].html_url,
-                res.data[j].title,
-                res.data[j].created_at,
-                res.data[j].updated_at,
-                res.data[j].user.login,
-                res.data[j].owner
+                pullReq.html_url,
+                pullReq.title,
+                pullReq.created_at,
+                pullReq.updated_at,
+                pullReq.user.login
               ];
-
-              // console.log(
-              //   `${repoName}: ${numberOfOpenPullRequests} ${delimiter}\n\n`
-              // );
               console.log(pullRequestData.join(";"));
-              console.log("\n");
             }
-
-            //  console.log(res.data);
           }
         })
         .catch(err => console.log(err));
