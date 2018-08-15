@@ -17,10 +17,26 @@ babbel
           const numberOfOpenPullRequests = res.data.length;
           const delimiter = "*".repeat(numberOfOpenPullRequests);
           if (numberOfOpenPullRequests != 0) {
-            console.log(
-              `${repoName}: ${numberOfOpenPullRequests} ${delimiter}\n\n`
-            );
-            console.log(res.data);
+            for (let j = 0; j < res.data.length; j++) {
+              const pullRequestData = [
+                res.headers.date,
+                repoName,
+                res.data[j].html_url,
+                res.data[j].title,
+                res.data[j].created_at,
+                res.data[j].updated_at,
+                res.data[j].user.login,
+                res.data[j].owner
+              ];
+
+              // console.log(
+              //   `${repoName}: ${numberOfOpenPullRequests} ${delimiter}\n\n`
+              // );
+              console.log(pullRequestData.join(";"));
+              console.log("\n");
+            }
+
+            //  console.log(res.data);
           }
         })
         .catch(err => console.log(err));
