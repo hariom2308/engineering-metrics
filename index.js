@@ -32,11 +32,14 @@ babbel
               }
             }
           })
-          .catch(err => console.log(err));
-    }, i*10 );
-
+          .catch(err => {
+             console.log("Forbidden");
+             process.exit(1);
+        });
+      }, i*10);
     }
   })
   .catch(err => {
     console.log(err);
+    process.exit(1);
   });
