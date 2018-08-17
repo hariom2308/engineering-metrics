@@ -72,7 +72,9 @@ babbel
       console.log(pullRequests[i].join('\n'));
       pullReqCount += pullRequests[i].length;
     }
-    console.log('Number of Pull Req = ', pullReqCount);
+    //To get no. of open pull requests for all the repos
+    // in the organisation, uncomment line below
+    //console.log('Number of Pull Req = ', pullReqCount);
   })
   .catch(err => {
     console.log("Forbidden: getRepos() did not work.");
