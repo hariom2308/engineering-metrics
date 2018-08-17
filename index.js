@@ -2,7 +2,7 @@ require("dotenv").config();
 const GitHub = require("github-api");
 const accessToken = process.env.ACCESS_TOKEN;
 const gh = new GitHub({ token: accessToken });
-const organization = "babbel";
+const organization = "lessonnine";
 const babbel = gh.getOrganization(organization);
 
 const displayPullRequestsForRepo = repoName => {
@@ -17,7 +17,7 @@ const displayPullRequestsForRepo = repoName => {
         for (let j = 0; j < numberOfOpenPullRequests; j++) {
           const pullReq = res.data[j];
           const pullRequestData = [
-            res.headers.date,
+            res.headers.date, // Date format
             repoName,
             pullReq.html_url,
             pullReq.title,
@@ -25,10 +25,10 @@ const displayPullRequestsForRepo = repoName => {
             pullReq.updated_at,
             pullReq.user.login
           ];
-          pullReqArr.push(pullRequestData.join("; "));
+          pullReqArr.push(pullRequestData.join(";"));
         }
       }
-      resolve(pullReqArr.join("\n"));
+      resolve(pullReqArr);
     })
     .catch(err => {
        console.log("Forbidden: listPullRequests() didnot work");
@@ -65,7 +65,15 @@ const getPullRequestsForOrg = repos => {
 
 babbel
   .getRepos()
-  .then(getPullRequestsForOrg).then((res) => {console.log(res)})
+  .then(getPullRequestsForOrg).then((res) => {
+    let pullRequests = res.filter((pullRequest) => pullRequest.length > 0);
+    let pullReqCount = 0;
+    for(let i = 0; i < pullRequests.length; i++){
+      console.log(pullRequests[i].join('\n'));
+      pullReqCount += pullRequests[i].length;
+    }
+    console.log('Number of Pull Req = ', pullReqCount);
+  })
   .catch(err => {
     console.log("Forbidden: getRepos() did not work.");
     process.exit(1);
